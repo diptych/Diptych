@@ -16,3 +16,6 @@ node_modules
 
 public/components
 public/less/*.css
+
+.DS_Store
+.idea
