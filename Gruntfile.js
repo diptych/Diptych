@@ -33,6 +33,10 @@ module.exports = function (grunt) {
       jade: {
         files: ['app/views/**/*.jade'],
         options: { livereload: reloadPort }
+      },
+      public:{
+        files: ['public/less/**/*.less', 'public/**/*.js']
+      , options:{ livereload: reloadPort }
       }
     }
   });
