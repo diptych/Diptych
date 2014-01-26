@@ -1,22 +1,22 @@
 doctype 5
 html(lang='en')
-  head
-    meta(charset='UTF-8')
-    meta(name='viewport', content='width=device-width')
-    title= title
-    block css
-      link(rel='stylesheet', href='/components/bootstrap/less/bootstrap.css')
-      link(rel='stylesheet', href='/less/style.css')
-    block js
-      script(src='components/es5-shim/es5-shim.js')
-      script(src='components/json3/lib/json3.js')
-      script(src='components/jquery/jquery.js')
-      script(src='components/angular/angular.js')
-      script(src='components/angular-resource/angular-resource.js')
-      script(src='components/angular-cookies/angular-cookies.js')
-      script(src='components/angular-route/angular-route.js')
-      script(src='http://localhost:35729/livereload.js')
-      script(src='app/client.js')
-  body
-    .container
-      block content
+    head
+        meta(charset='UTF-8')
+        meta(name='viewport', content='width=device-width')
+        title= title
+        block css
+            link(rel='stylesheet', href='/components/bootstrap/less/bootstrap.css')
+            link(rel='stylesheet', href='/less/style.css')
+        block js
+            script(src='components/es5-shim/es5-shim.js')
+            script(src='components/json3/lib/json3.js')
+            script(src='components/jquery/jquery.js')
+            script(src='components/angular/angular.js')
+            script(src='components/angular-resource/angular-resource.js')
+            script(src='components/angular-cookies/angular-cookies.js')
+            script(src='components/angular-route/angular-route.js')
+            script(src='http://localhost:35729/livereload.js')
+            script(src='app/client.js')
+    body
+        .container
+            block content
