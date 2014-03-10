@@ -6,11 +6,9 @@ block content
         h1.cn Diptych
         div.col-lg-12
             div.zone.hate
-                span.glyphicon.glyphicon-remove
-        div.col-lg-6
-            img(src='',width='100%',height=300)
-        div.col-lg-6
-            img(src='',width='100%',height=300)
+                span.glyphicon.glyphicon-refresh
+         - each pic in image
+            img(src='../images/starter/#{pic.name}', width='50%')
         div.col-lg-12
             div.zone.love
                 span.glyphicon.glyphicon-heart
