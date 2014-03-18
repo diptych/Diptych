@@ -45,7 +45,7 @@ exports.show = function(req,res){
 				}
 
 				// trandsmit the display image image
-				res.render('home', {image: displayImage});
+				res.render('home', {image: displayImage, title:'Really Awesome Title'});
 			});
 		});
 }

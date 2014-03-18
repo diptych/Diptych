@@ -1,0 +1,37 @@
+@font-face {
+	font-family: 'icons';
+	src:url('fonts/icons.eot?2zzl8y');
+	src:url('fonts/icons.eot?#iefix2zzl8y') format('embedded-opentype'),
+		url('fonts/icons.woff?2zzl8y') format('woff'),
+		url('fonts/icons.ttf?2zzl8y') format('truetype'),
+		url('fonts/icons.svg?2zzl8y#icons') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="icons-"], [class*=" icons-"] {
+	font-family: 'icons';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.icons-dance:before {
+	content: "\e600";
+}
+.icons-dance1:before {
+	content: "\e601";
+}
+.icons-dance2:before {
+	content: "\e602";
+}
+.icons-dance3:before {
+	content: "\e603";
+}

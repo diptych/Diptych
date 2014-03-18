@@ -11,7 +11,7 @@ images.ensureIndex({fieldName: 'name', unique: true});
 users.ensureIndex({fieldName: 'ip', unique: true});
 
 // Read filesystem photos into nedb objects
-var  defaultImages = fs.readdirSync('./public/images/starter');
+var  defaultImages = fs.readdirSync('./public/img/starter');
 
 //
 defaultImages.forEach(function(image){
