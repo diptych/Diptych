@@ -3,7 +3,8 @@ block content
     div.content
     div.row
         h1.cn Diptych
-        div.col-lg-12
-            - each image in scope
-                img(src='../images/starter/#{pic.name}', width='100%')
-        div.col-lg-12
+        div
+            - each img in scope
+                h2.title #{img.name}
+                img(src='../img/starter/#{img.name}', width='100%')
+        div

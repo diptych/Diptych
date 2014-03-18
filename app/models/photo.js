@@ -1,8 +1,7 @@
 // Example model
 
 var mongoose = require('mongoose'),
-  Schema = mongoose.Schema
-;
+  Schema = mongoose.Schema;
 
 var PhotoSchema = new Schema({
   title: String,
