@@ -3,6 +3,7 @@ module.exports = function(app){
 	//home route
 	var vote = require('../app/controllers/vote');
 	app.get('/', vote.show);
+	app.get('/image/:id/:action?', vote.win )
 
 	var home = require('../app/controllers/home');
 	app.get('/index', vote.show);
@@ -12,5 +13,6 @@ module.exports = function(app){
 
 	var list = require('../app/controllers/scope');
 	app.get('/scope', list.scope);
+
 
 };

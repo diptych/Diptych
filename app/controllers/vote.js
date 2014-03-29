@@ -3,6 +3,31 @@ var db = require("../../config/database.js"),
 	users = db.users;
 
 
+exports.win = function( request, response ){
+	var query = {
+			_id: request.params.id
+		}
+
+	images.find( query, function( error, results ){
+		image = results.pop()
+
+		switch( request.params.action ){
+			case 'win':
+				image.wins += 1
+				break;
+			case 'lose':
+				image.loses += 1
+				break;
+			default:
+				break;
+		}
+
+		images.update( query, image, function( error, results ){ 
+			response.send( image )
+		})
+	})
+}
+
 	//homepage rendering protocol
 exports.show = function(req,res){
 		//console.log('request received at: ' + req.path);
