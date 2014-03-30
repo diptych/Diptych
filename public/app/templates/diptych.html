@@ -1,0 +1,10 @@
+<div ng-repeat="image in images">
+	<span class="win" ng-click="win(image)"> win </span>
+	<span class="lose" ng-click="lose(image)"> lose </span>
+	<img height=100 id="{{image._id}}" src="/img/starter/{{image.name}}" />
+	<pre>
+		<code>
+			{{ image | json }}
+		</code>
+	</pre>
+</div>
