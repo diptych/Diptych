@@ -9,7 +9,8 @@ module.exports = function(app){
 	app.get('/index', vote.show);
 
 	var photos = require('../app/controllers/photos');
-	app.get('/photos', photos.get );
+	// app.get('/photos', photos.get );
+	app.get('/photos', photos.diptych );
 
 	var list = require('../app/controllers/scope');
 	app.get('/scope', list.scope);

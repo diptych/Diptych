@@ -9,14 +9,13 @@ html(lang='en')
             link(rel='stylesheet', href='/less/bootstrap/bootstrap.css')
             link(rel='stylesheet', href='../fonts/icons/style.css')
         block js
-            script(src='components/es5-shim/es5-shim.js')
             script(src='components/json3/lib/json3.js')
             script(src='components/jquery/jquery.js')
-            script(src='components/handlebars/handlebars.js')
-            script(src='components/ember/ember.js')
-            script(src='components/ember-data/ember-data.js')
+            script(src='components/lodash/dist/lodash.compat.js')
+            script(src='components/angular/angular.js')
+            script(src='components/angular-route/angular-route.js')
             script(src='http://localhost:35729/livereload.js')
             script(src='app/client.js')
     body
-        .container
+        .container(ng-app='diptych')
             block content
