@@ -1,4 +1,4 @@
-diptych.io
-==========
+diptych
+========
 
-Diptych is a simple app 
+Diptych is simple
