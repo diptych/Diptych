@@ -35,7 +35,17 @@ angular.module('diptych').controller('RootController', function( $rootScope, $sc
 				})
 			})
 
+            $scope.$on('image:choose', function(event, winner, looser){
+                $http.get('/choose/'+winner._id+'/'+looser._id+'/').success(function(updatedWinner, updatedLooser){
+                    var localWinner = _.find($scope.images, {_id: updatedWinner._id});
+                    var localLooser = _.find($scope.images, {_id: updatedLooser._id});
+                    _.assign(localWinner, updatedWinner)
+                    _.assign(localLooser, updatedLooser)
+                })
+            })
+
 			$scope.win = function(image){
+                console.log("win");
 				$scope.$emit('image:vote', 'win', image);
 				// update()
 			}
@@ -43,6 +53,13 @@ angular.module('diptych').controller('RootController', function( $rootScope, $sc
 				$scope.$emit('image:vote', 'lose', image);
 				// update()
 			}
+            // chosen image
+            $scope.choose = function(winner, looser){
+                console.log("choose");
+                console.log(winner);
+                console.log(looser);
+                $scope.$emit('image:choose', winner, looser);
+            }
 
 
 			function update(){

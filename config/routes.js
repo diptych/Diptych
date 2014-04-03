@@ -4,6 +4,7 @@ module.exports = function(app){
 	var vote = require('../app/controllers/vote');
 	app.get('/', vote.show);
 	app.get('/image/:id/:action?', vote.win )
+    app.get('/choose/:winner/:looser/', vote.choose )
 
 	var home = require('../app/controllers/home');
 	app.get('/index', vote.show);

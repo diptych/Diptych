@@ -4,7 +4,9 @@ var db = require("../../config/database.js"),
 
 
 exports.win = function( request, response ){
-	var query = {
+    console.log("vote.win called");
+
+    var query = {
 			_id: request.params.id
 		}
 
@@ -28,9 +30,35 @@ exports.win = function( request, response ){
 	})
 }
 
+exports.choose = function( request, response ){
+    console.log("vote.choose called");
+    var winner, looser;
+    var imageWin = { _id: request.params.winner }
+    var imageLose = { _id: request.params.looser }
+
+    images.find(imageWin, function(error, results){
+        winner = results.pop()
+        winner.wins += 1;
+        images.update( imageWin, winner, function( error, results ){
+            images.find(imageLose, function(error, results){
+                looser = results.pop()
+                looser.loses += 1;
+                images.update( imageLose, looser, function(error, results){
+                    response.send( winner, looser );
+                })
+            })
+        })
+    })
+
+
+
+}
+
 	//homepage rendering protocol
 exports.show = function(req,res){
-		//console.log('request received at: ' + req.path);
+    console.log("vote.win called");
+
+    //console.log('request received at: ' + req.path);
 		images.find({}, function(err, allImages){
 			// Find the current user
 			users.find({ip: req.ip},function(err, u){
@@ -70,7 +98,7 @@ exports.show = function(req,res){
 				}
 
 				// trandsmit the display image image
-				res.render('home', {image: displayImage, title:'Really Awesome Title'});
+				res.render('home', {image: displayImage, title:'Diptych ~ Better Visuals'});
 			});
 		});
 }
