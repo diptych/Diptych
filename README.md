@@ -1,4 +1,4 @@
-diptych
+Diptych
 ========
 
-Diptych is simple
+Diptych is simple. 
