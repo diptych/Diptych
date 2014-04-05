@@ -1,7 +1,7 @@
-<div ng-repeat="image in images">
+<div ng-repeat="image in images" class="frame">
 	<span class="win" ng-click="win(image)"> win </span>
 	<span class="lose" ng-click="lose(image)"> lose </span>
-	<img height=100 id="{{image._id}}" src="/img/starter/{{image.name}}" />
+	<img height=250 id="{{image._id}}" ng-click="choose(image, image)" src="/img/starter/{{image.name}}" />
 	<pre>
 		<code>
 			{{ image | json }}

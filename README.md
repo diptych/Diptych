@@ -1,2 +1,4 @@
-diptych.io
-==========
+Diptych
+========
+
+Diptych is simple.

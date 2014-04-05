@@ -1,7 +1,7 @@
 angular.module('diptych', ['ngRoute'])
 
 angular.module('diptych')
-.config(['$routeProvider', '$locationProvider', 
+.config(['$routeProvider', '$locationProvider',
 function ($routeProvider, $locationProvider) {
   $locationProvider.html5Mode(true);
   $routeProvider.otherwise({redirectTo:'/'});
@@ -11,7 +11,7 @@ function ($routeProvider, $locationProvider) {
 angular.module('diptych').controller('RootController', function( $rootScope, $scope, $http ){
 
 
-	
+
 })
 // .service('diptych.service', [ '$http', '$q', function( $http, $q ){
 
@@ -31,11 +31,21 @@ angular.module('diptych').controller('RootController', function( $rootScope, $sc
 				$http.get('/image/'+image._id+'/'+vote).success(function( updatedImage ){
 					var localImage = _.find( $scope.images, { _id: updatedImage._id } );
 					// update all the image properties
-					_.assign( localImage, updatedImage ) 
+					_.assign( localImage, updatedImage )
 				})
 			})
 
+            $scope.$on('image:choose', function(event, winner, looser){
+                $http.get('/choose/'+winner._id+'/'+looser._id+'/').success(function(updatedWinner, updatedLooser){
+                    var localWinner = _.find($scope.images, {_id: updatedWinner._id});
+                    var localLooser = _.find($scope.images, {_id: updatedLooser._id});
+                    _.assign(localWinner, updatedWinner)
+                    _.assign(localLooser, updatedLooser)
+                })
+            })
+
 			$scope.win = function(image){
+                console.log("win");
 				$scope.$emit('image:vote', 'win', image);
 				// update()
 			}
@@ -43,7 +53,13 @@ angular.module('diptych').controller('RootController', function( $rootScope, $sc
 				$scope.$emit('image:vote', 'lose', image);
 				// update()
 			}
-
+            // chosen image
+            $scope.choose = function(winner, looser){
+                console.log("choose");
+                console.log(winner);
+                console.log(looser);
+                $scope.$emit('image:choose', winner, looser);
+            }
 
 			function update(){
 				$http.get('/photos').success(function(data){
