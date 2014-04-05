@@ -1,7 +1,7 @@
 angular.module('diptych', ['ngRoute'])
 
 angular.module('diptych')
-.config(['$routeProvider', '$locationProvider', 
+.config(['$routeProvider', '$locationProvider',
 function ($routeProvider, $locationProvider) {
   $locationProvider.html5Mode(true);
   $routeProvider.otherwise({redirectTo:'/'});
@@ -11,7 +11,7 @@ function ($routeProvider, $locationProvider) {
 angular.module('diptych').controller('RootController', function( $rootScope, $scope, $http ){
 
 
-	
+
 })
 // .service('diptych.service', [ '$http', '$q', function( $http, $q ){
 
@@ -31,7 +31,7 @@ angular.module('diptych').controller('RootController', function( $rootScope, $sc
 				$http.get('/image/'+image._id+'/'+vote).success(function( updatedImage ){
 					var localImage = _.find( $scope.images, { _id: updatedImage._id } );
 					// update all the image properties
-					_.assign( localImage, updatedImage ) 
+					_.assign( localImage, updatedImage )
 				})
 			})
 
@@ -60,7 +60,6 @@ angular.module('diptych').controller('RootController', function( $rootScope, $sc
                 console.log(looser);
                 $scope.$emit('image:choose', winner, looser);
             }
-
 
 			function update(){
 				$http.get('/photos').success(function(data){

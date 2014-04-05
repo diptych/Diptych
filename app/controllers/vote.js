@@ -24,7 +24,7 @@ exports.win = function( request, response ){
 				break;
 		}
 
-		images.update( query, image, function( error, results ){ 
+		images.update( query, image, function( error, results ){
 			response.send( image )
 		})
 	})
