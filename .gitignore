@@ -19,3 +19,6 @@ public/less/*.css
 
 .DS_Store
 .idea
+
+#diptych specific
+config/data

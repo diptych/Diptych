@@ -3,8 +3,10 @@ module.exports = function(app){
 	//home route
 	var vote = require('../app/controllers/vote');
 	app.get('/', vote.show);
-	app.get('/image/:id/:action?', vote.win )
-    app.get('/choose/:winner/:looser/', vote.choose )
+    // Three primary user interactions for photo diptych
+    app.get('/keep/:winner/:looser', vote.keep )
+    app.get('/toss/:partner1/:partner2', vote.toss )
+    app.get('/pair/:partner1/:partner2', vote.pair )
 
 	var home = require('../app/controllers/home');
 	app.get('/index', vote.show);

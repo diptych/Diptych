@@ -14,8 +14,10 @@
     "globule": "~0.2.0",
     "lodash": "~2.4.1",
     "async": "~0.2.10",
-		"express3-handlebars": "~0.5.0",
-		"nedb": "~0.10.4"
+    "express3-handlebars": "~0.5.0",
+    "nedb": "~0.10.4",
+    "bookshelf": "~0.6.10",
+    "q": "~1.0.1"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
@@ -25,8 +27,8 @@
     "request": "~2.27.0",
     "time-grunt": "~0.1.1",
     "load-grunt-tasks": "~0.2.0",
-		"grunt-contrib-sass":           "*",
-		"grunt-cssc":                   "*",
-		"matchdep":                     "*"
+    "grunt-contrib-sass": "*",
+    "grunt-cssc": "*",
+    "matchdep": "*"
   }
 }

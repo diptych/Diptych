@@ -1,10 +1,3 @@
 <div ng-repeat="image in images" class="frame">
-	<span class="win" ng-click="win(image)"> win </span>
-	<span class="lose" ng-click="lose(image)"> lose </span>
-	<img height=250 id="{{image._id}}" ng-click="choose(image, image)" src="/img/starter/{{image.name}}" />
-	<pre>
-		<code>
-			{{ image | json }}
-		</code>
-	</pre>
+	<img width=251 id="{{image._id}}" ng-click="keep(image)" src="/img/starter/{{image.name}}" />
 </div>
