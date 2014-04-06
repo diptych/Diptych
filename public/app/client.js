@@ -7,65 +7,77 @@ function ($routeProvider, $locationProvider) {
   $routeProvider.otherwise({redirectTo:'/'});
 }]);
 
-
 angular.module('diptych').controller('RootController', function( $rootScope, $scope, $http ){
 
-
+// call('/photo/'+ exculsion1 + "/" + exclusion2)
+// present duplicate images
 
 })
-// .service('diptych.service', [ '$http', '$q', function( $http, $q ){
-
-
-// 	return {
-// 		get: function(){
-// 			return $http.get('/photos')
-// 		}
-// 	}
-// })
 .directive('imagePair', [ '$rootScope', '$http', function( $rootScope, $http ){
 	return {
 		templateUrl: 'app/templates/diptych.html'
 	,	controller: function($scope, $element){
-
-			$scope.$on('image:vote', function(event, vote, image){
-				$http.get('/image/'+image._id+'/'+vote).success(function( updatedImage ){
-					var localImage = _.find( $scope.images, { _id: updatedImage._id } );
-					// update all the image properties
-					_.assign( localImage, updatedImage )
-				})
-			})
-
-            $scope.$on('image:choose', function(event, winner, looser){
-                $http.get('/choose/'+winner._id+'/'+looser._id+'/').success(function(updatedWinner, updatedLooser){
-                    var localWinner = _.find($scope.images, {_id: updatedWinner._id});
-                    var localLooser = _.find($scope.images, {_id: updatedLooser._id});
-                    _.assign(localWinner, updatedWinner)
-                    _.assign(localLooser, updatedLooser)
+            $scope.keep = function(winner){
+                var looser =_.reject( $scope.images, winner ).pop()
+                $http.get('/keep/'+winner._id+'/'+looser._id)
+                .success(function(updated, status){
+                    var localWinner = _.find($scope.images, {_id: updated.winner._id});
+                    var localLooser = _.find($scope.images, {_id: updated.looser._id});
+                    _.assign(localWinner, updated.winner)
+                    _.assign(localLooser, updated.looser)
+                    fetchPair().then(function(data){
+                        // prevent duplicate image display
+                        data = _.reject(data, _.pick(looser, '_id') )
+                        // replace loosing image
+                        _.assign(localLooser, data.pop() )
+                    })
                 })
-            })
-
-			$scope.win = function(image){
-                console.log("win");
-				$scope.$emit('image:vote', 'win', image);
-				// update()
-			}
-			$scope.lose = function(image){
-				$scope.$emit('image:vote', 'lose', image);
-				// update()
-			}
-            // chosen image
-            $scope.choose = function(winner, looser){
-                console.log("choose");
-                console.log(winner);
-                console.log(looser);
-                $scope.$emit('image:choose', winner, looser);
+            }
+            $scope.lose = function(looser){
+                var winner =_.reject( $scope.images, looser ).pop()
+                $scope.keep(winner)
+            }
+            $scope.toss = function(images){
+                $http.get('/toss/'+images[0]['_id']+'/'+images[1]['_id'])
+                .success(function(updated, status){
+                    // matches returned images to local copy and updates
+                    _(updated).each(function(updatedImage){
+                        var localImage = _.find($scope.images
+                            , _.pick(updatedImage, '_id') // get object {_id}
+                        )
+                        _.assign(localImage, updatedImage) //updates object
+                    })
+                    update();
+                })
+            }
+            $scope.pair = function(images){
+                $http.get('/pair/'+images[0]['_id']+'/'+images[1]['_id'])
+                .success(function(updated, status){
+                    _(updated).each(function(updatedImage){
+                        var localImage = _.find($scope.images
+                            , _.pick(updatedImage, '_id') // get object {_id}
+                        )
+                        _.assign(localImage, updatedImage) //updates object
+                    })
+                    update();
+                })
             }
 
-			function update(){
-				$http.get('/photos').success(function(data){
-					$scope.images = data
-				})
-			}
+            function update(){
+                fetchPair().then(function(data){
+                    $scope.images = data
+                })
+            }
+
+            function fetchPair(){
+                return $http.get('/photos')
+                .then(function(response){
+                    return response.data
+                })
+            }
+
+
+
 			update()
 		}
 	}

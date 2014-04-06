@@ -42,7 +42,10 @@ function keep( request, response ){
     })
 
     Q.all([winner.defer.promise, looser.defer.promise]).then(function(results){
-        response.send( results )
+        response.send( {
+            winner: results[0]
+        ,   looser: results[1]
+        } )
     })
 }
 
