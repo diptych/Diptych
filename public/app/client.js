@@ -25,7 +25,7 @@ angular.module('diptych').controller('RootController', function( $rootScope, $sc
                     var localLooser = _.find($scope.images, {_id: updated.looser._id});
                     _.assign(localWinner, updated.winner)
                     _.assign(localLooser, updated.looser)
-                    fetchPair().then(function(data){
+                    fetchPair(2).then(function(data){
                         // prevent duplicate image display
                         data = _.reject(data, _.pick(looser, '_id') )
                         // replace loosing image
@@ -64,13 +64,13 @@ angular.module('diptych').controller('RootController', function( $rootScope, $sc
             }
 
             function update(){
-                fetchPair().then(function(data){
+                fetchPair(2).then(function(data){
                     $scope.images = data
                 })
             }
 
-            function fetchPair(){
-                return $http.get('/photos')
+            function fetchPair(count){
+                return $http.get('/photo/pick/'+count)
                 .then(function(response){
                     return response.data
                 })
