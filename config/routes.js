@@ -15,8 +15,9 @@ module.exports = function(app){
 	// app.get('/photos', photos.get );
 	app.get('/photos', photos.diptych );
 
-	var list = require('../app/controllers/scope');
-	app.get('/scope', list.scope);
-
+	var gallery = require('../app/controllers/gallery');
+	app.get('/gallery', gallery.list);
+	var rank = require('../app/controllers/gallery');
+	app.get('/rank', gallery.rank);
 
 };

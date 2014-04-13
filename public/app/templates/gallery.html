@@ -1,0 +1,8 @@
+<div ng-repeat="image in rankImages">
+    <h2 title="{{image.name}}">{{image.name}}</h2>
+    <img src="../img/starter/{{image.name}}" width='33%'/>
+    <p> Wins: {{image.wins.length}} </p>
+    <p> Losses: {{image.losses.length}} </p>
+    <p> Pairs: {{image.pairs.length}} </p>
+    <p> Tosses: {{image.tosses.length}} </p>
+</div>      

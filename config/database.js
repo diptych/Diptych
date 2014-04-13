@@ -23,7 +23,6 @@ defaultImages.forEach(function(image){
         losses: [],
         pairs: [],
         tosses: []
-
 	})
 });
 
