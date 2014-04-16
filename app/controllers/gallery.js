@@ -24,7 +24,7 @@ function rank(request, responce){
 				- (picture1.wins.length - 2 
 					* picture1.losses.length/3);
 			return weightedResults;
-		});
+		}); 
 		responce.send(rankImages);
 	});
 }

@@ -49,7 +49,7 @@ angular.module('diptych').controller('RootController', function( $rootScope, $sc
                     })
                     update();
                 })
-            }
+            } 
             $scope.pair = function(images){
                 $http.get('/pair/'+images[0]['_id']+'/'+images[1]['_id'])
                 .success(function(updated, status){
