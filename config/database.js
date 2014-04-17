@@ -7,7 +7,7 @@ var  client = new Dropbox.Client({
     	secret: "m9a2oa9ovxdtb2b"
 });
 var dbox  = require("dbox")
-var app   = dbox.app({ "app_key": "8ahx50h1g37wzx0", "app_secret": "m9a2oa9ovxdtb2b" })
+var app   = dbox.app({ "app_key": "", "app_secret": "" })
 
 // create nedb for photos and users leveraging autoload
 var images = new dataStore({ filename: __dirname + "/data/images", autoload: true })
