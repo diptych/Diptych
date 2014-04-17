@@ -60,6 +60,10 @@ h1 {
   font-size: 3em;
   font-weight: 100;
 }
+.cn{
+  text-align:center;
+  }
+
 h1:not(:first-child) {
   margin-top: 50px;
 }
@@ -84,12 +88,15 @@ section:nth-child(2n) {
   float: left;
   padding: 8px;
   z-index: 1;
+  img{
+    width:90%;
+    margin: 0 5%;
+  }
 }
 
 .zone{
-  font-size:3em;
-  color: #808080;
-  z-index: -1;
+  font-size:3.5em;
+  color: #888;
   &:hover{
     color: #00d8d8;
   }
@@ -97,7 +104,20 @@ section:nth-child(2n) {
     margin: 0 auto;
     display: block;
   }
+  .glyphicon:empty{
+  width:1.3em;
+  }
 }
+
+.nav-btn{ 
+  float: right;
+  padding: 8px 13px;
+  position: absolute;
+  top: 5px;
+  right: 26px;
+  margin: 1.5em;
+}
+
 .container {
   margin: 0 auto;
   width:auto;

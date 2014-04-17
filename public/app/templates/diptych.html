@@ -1,3 +1,3 @@
-<div ng-repeat="image in images" class="frame">
-	<img width=251 id="{{image._id}}" ng-click="keep(image)" src="/img/starter/{{image.name}}" />
+<div ng-repeat="image in images" class="frame col-sm-6">
+	<img id="{{image._id}}" ng-click="keep(image)" ng-src="/img/starter/{{image.name}}" />
 </div>

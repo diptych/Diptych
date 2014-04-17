@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'icons';
-	src:url('fonts/icons.eot?2zzl8y');
-	src:url('fonts/icons.eot?#iefix2zzl8y') format('embedded-opentype'),
-		url('fonts/icons.woff?2zzl8y') format('woff'),
-		url('fonts/icons.ttf?2zzl8y') format('truetype'),
-		url('fonts/icons.svg?2zzl8y#icons') format('svg');
+	src:url('fonts/icons.eot?sz1sfw');
+	src:url('fonts/icons.eot?#iefixsz1sfw') format('embedded-opentype'),
+		url('fonts/icons.woff?sz1sfw') format('woff'),
+		url('fonts/icons.ttf?sz1sfw') format('truetype'),
+		url('fonts/icons.svg?sz1sfw#icons') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -23,15 +23,21 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
+.icons-share:before {
+	content: "\e605";
+}
+.icons-pair:before {
+	content: "\e604";
+}
 .icons-dance:before {
 	content: "\e600";
+}
+.icons-toss:before {
+	content: "\e603";
 }
 .icons-dance1:before {
 	content: "\e601";
 }
 .icons-dance2:before {
 	content: "\e602";
-}
-.icons-dance3:before {
-	content: "\e603";
 }

@@ -138,19 +138,16 @@ exports.choose = function( request, response ){
             })
         })
     })
-
-
-
 }
 
 	//homepage rendering protocol
-exports.show = function(req,res){
+exports.show = function( request , responce){
     console.log("vote.win called");
     debugger;
     //console.log('request received at: ' + req.path);
 	false && images.find({}, function(err, allImages){
 		// Find the current user
-		users.find({ip: req.ip},function(err, u){
+		users.find({ip: request.ip},function(err, u){
 			//console.log(allImages);
 			// create the image array
 			var votedImages = [];
@@ -187,7 +184,7 @@ exports.show = function(req,res){
 			}
 
 			// trandsmit the display image image
-			res.render('home', {image: displayImage, title:'Diptych ~ Better Visuals'});
+			responce.render('home', {image: displayImage, title:'Diptych ~ Better Visuals'});
 		});
 	});
 }

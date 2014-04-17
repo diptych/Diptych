@@ -4,12 +4,11 @@ block content
     div.content(ng-controller='RootController')
     div.row
         h1.cn Diptych
-        a(href="/scope") Scope
-        div.col-lg-12
-            div.zone.hate
-                span.glyphicon.icons-dance3(title='Skip These', ng-click="toss(images)")
+        a.btn.btn-default.nav-btn(href="/gallery") Gallery
+        div.zone.love.col-sm-4
+            span.glyphicon.icons-pair(title='Pair Images', ng-click="pair(images)")
+        div.zone.love.col-sm-4
+            span.glyphicon.icons-share(title='Share Images', ng-click="share(images)")
+        div.zone.love.col-sm-4
+            span.glyphicon.icons-toss(title='Toss Images', ng-click="toss(images)")
         section( image-pair )
-        div.col-lg-12
-            div.zone.love
-                span.glyphicon.icons-dance1(title='Save Both', ng-click="pair(images)")
-

@@ -49,7 +49,7 @@ angular.module('diptych').controller('RootController', function( $rootScope, $sc
                     })
                     update();
                 })
-            }
+            } 
             $scope.pair = function(images){
                 $http.get('/pair/'+images[0]['_id']+'/'+images[1]['_id'])
                 .success(function(updated, status){
@@ -82,3 +82,26 @@ angular.module('diptych').controller('RootController', function( $rootScope, $sc
 		}
 	}
 }])
+
+.directive('gallery', [ '$rootScope', '$http', function( $rootScope, $http ){
+        return { 
+            templateUrl: 'app/templates/gallery.html', 
+            controller: function($scope, $element){
+
+                function update(){
+                    fetchRank().then(function(data){
+                    $scope.rankImages = data
+                    })
+                }
+
+                function fetchRank(){
+                    return $http.get('/rank')
+                    .then(function(response){
+                        return response.data
+                    }) 
+                }
+
+                update()
+            }
+        }
+    }])
