@@ -2,7 +2,7 @@ module.exports = function(app){
     var vote = require('../app/controllers/vote')
     ,   photos = require('../app/controllers/photos')
     ,   home = require('../app/controllers/home')
-	,   gallery = require('../app/controllers/gallery')
+	,   list = require('../app/controllers/scope')
 
     //home route
     app.get('/', photos.render);
@@ -16,9 +16,14 @@ module.exports = function(app){
     app.get('/toss/:partner1/:partner2', vote.toss)
     app.get('/pair/:partner1/:partner2', vote.pair)
 
-
+<<<<<<< HEAD
+	var gallery = require('../app/controllers/gallery');
 	app.get('/gallery', gallery.list);
+	var rank = require('../app/controllers/gallery');
 	app.get('/rank', gallery.rank);
+=======
+	app.get('/scope', list.scope);
 
+>>>>>>> master
 
 };

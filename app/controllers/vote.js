@@ -144,8 +144,8 @@ exports.choose = function( request, response ){
 exports.show = function( request , responce){
     console.log("vote.win called");
     debugger;
-    //console.log('request received at: ' + request.path);
-	images.find({}, function(err, allImages){
+    //console.log('request received at: ' + req.path);
+	false && images.find({}, function(err, allImages){
 		// Find the current user
 		users.find({ip: request.ip},function(err, u){
 			//console.log(allImages);
