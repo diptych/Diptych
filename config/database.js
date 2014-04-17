@@ -1,6 +1,13 @@
 // Require nedb module
-var dataStore = require('nedb'),
-	fs = require('fs');
+var dataStore = require('nedb')
+,	fs = require('fs')
+, 	Dropbox = require("dropbox")
+var  client = new Dropbox.Client({
+    	key: "8ahx50h1g37wzx0",
+    	secret: "m9a2oa9ovxdtb2b"
+});
+var dbox  = require("dbox")
+var app   = dbox.app({ "app_key": "8ahx50h1g37wzx0", "app_secret": "m9a2oa9ovxdtb2b" })
 
 // create nedb for photos and users leveraging autoload
 var images = new dataStore({ filename: __dirname + "/data/images", autoload: true })
