@@ -14,7 +14,6 @@ var images = new dataStore({ filename: __dirname + "/data/images", autoload: tru
 ,   users = new dataStore({ filename: __dirname + "/data/users", autoload: true})
 ;
 
-
 //  Create unique filename for photos and user ip
 images.ensureIndex({fieldName: 'name', unique: true});
 users.ensureIndex({fieldName: 'ip', unique: true});
