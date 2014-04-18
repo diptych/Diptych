@@ -9,7 +9,7 @@ var config = {
       name: 'diptych-io'
     },
     port: 3000,
-    db: 'mongodb://localhost/diptych-io-development'
+    db: 'mongodb://localhost/diptych-development'
   },
 
   test: {
@@ -18,7 +18,7 @@ var config = {
       name: 'diptych-io'
     },
     port: 3000,
-    db: 'mongodb://localhost/diptych-io-test'
+    db: 'mongodb://localhost/diptych-test'
   },
 
   production: {
@@ -27,7 +27,7 @@ var config = {
       name: 'diptych-io'
     },
     port: 3000,
-    db: 'mongodb://localhost/diptych-io-production'
+    db: 'mongodb://localhost/diptych-production'
   }
 };
 

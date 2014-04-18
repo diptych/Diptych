@@ -1,13 +1,37 @@
 // Require nedb module
-var dataStore = require('nedb')
-,	fs = require('fs')
+var fs = require('fs')
+,	dataStore = require('nedb')
 , 	Dropbox = require("dropbox")
-var  client = new Dropbox.Client({
-    	key: "8ahx50h1g37wzx0",
-    	secret: "m9a2oa9ovxdtb2b"
+,	dbox  = require("dbox")
+,	mongo = require("mongodb")
+,	mongoose = require("mongoose");
+
+
+// Read Dropbox keys into the configuration protocol.
+
+function readContent(targetFile){
+	fs.readFile( targetFile, 'utf8', function read(err, data){
+		if (err) {
+			throw err;
+		}
+		content = data;
+		processFile();
+	});
+	function processFile(){
+		console.log(content);
+		return content
+	}
+}
+// populate dropbox helper app with secret keys
+var appKey = readContent('./dropbox_app_key.txt');
+var appSecret = readContent('./dropbox_app_secret.txt');
+var app   = dbox.app({ "app_key" : appKey, "app_secret" : appSecret });
+
+
+// Connect to MongoDB
+mongo.connect('mongodb://localhost/diptych-development', {auto_reconnect : true}, function(err, db) { 
+	return 
 });
-var dbox  = require("dbox")
-var app   = dbox.app({ "app_key": "", "app_secret": "" })
 
 // create nedb for photos and users leveraging autoload
 var images = new dataStore({ filename: __dirname + "/data/images", autoload: true })
