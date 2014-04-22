@@ -19,9 +19,10 @@ public/less/*.css
 
 redis-stable
 rootkey.csv
+dump.rdb
 
 dropbox_app_key.txt
-dropbox_app_secrets.txt
+dropbox_app_secret.txt
 
 .DS_Store
 .idea

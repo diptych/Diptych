@@ -23,4 +23,6 @@ var app = express();
 require('./config/express')(app, config);
 require('./config/routes')(app);
 
+
+console.log("Diptych running on port: "+config.port); 
 app.listen(config.port);
