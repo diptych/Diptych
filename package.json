@@ -30,6 +30,8 @@
     "load-grunt-tasks": "~0.2.0",
     "grunt-contrib-sass": "*",
     "grunt-cssc": "*",
-    "matchdep": "*"
+    "matchdep": "*",
+    "dropbox": "*",
+    "dbox":"*"
   }
 }

@@ -1,13 +1,12 @@
-var _ = require('lodash'),
-    globule = require('globule'),
-    config = require('../../config/config')
+var _ = require('lodash')
+,   globule = require('globule')
+,   http = require('http')
+,   config = require('../../config/config')
+,   redis = require('redis').createClient()  // Database components and redis data api
+,   db = require('../../config/database.js')
+,   images = db.images
+,   users = db.users
 
-    // db and stuff
-    redis = require('redis').createClient()
-    db = require("../../config/database.js"),
-    images = db.images,
-    users = db.users
-;
 
 var __set__; //Store single operating set for now
 
@@ -28,7 +27,7 @@ _.assign(DiptychSet.prototype, {
 /**
  * Factory method for Diptych Set
  * @param  {User}     user     the user
- * @param  {Function} callback you know, a callback, it returns an err and images
+ * @param  {Function} callback returns an err and images
  * @return {void}
  */
 DiptychSet.create = function(user, callback){

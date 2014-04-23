@@ -1,51 +1,36 @@
 // Require nedb module
 var fs = require('fs')
 ,	dataStore = require('nedb')
-, 	Dropbox = require("dropbox")
 ,	dbox  = require("dbox")
 ,	mongo = require("mongodb")
-,	mongoose = require("mongoose");
+,	mongoose = require("mongoose")
+,	http = require("http")
+,	config = require('./config.js')
 
 
-// Read Dropbox keys into the configuration protocol.
-
-function readContent(targetFile){
-	fs.readFile( targetFile, 'utf8', function read(err, data){
-		if (err) {
-			throw err;
-		}
-		content = data;
-		processFile();
-	});
-	function processFile(){
-		console.log(content);
-		return content
-	}
-}
-// populate dropbox helper app with secret keys
-var appKey = readContent('./dropbox_app_key.txt');
-var appSecret = readContent('./dropbox_app_secret.txt');
-var app   = dbox.app({ "app_key" : appKey, "app_secret" : appSecret });
-
-
-// Connect to MongoDB
-mongo.connect('mongodb://localhost/diptych-development', {auto_reconnect : true}, function(err, db) { 
-	return 
+// MongoDB functionality
+mongoose.connect(config.db);
+var db = mongoose.connection;
+db.on('error', function () {
+  throw new Error('unable to connect to database at ' + config.port);
 });
+db.once('open', function(callback){
+	//console.log(db); // Debug database display
+	console.log("Diptych connected to database: "+db.name);
+})
 
-// create nedb for photos and users leveraging autoload
+
+// To be replaced by mongodb
+// Create nedb for photos and users leveraging autoload
 var images = new dataStore({ filename: __dirname + "/data/images", autoload: true })
 ,   users = new dataStore({ filename: __dirname + "/data/users", autoload: true})
 ;
-
 //  Create unique filename for photos and user ip
 images.ensureIndex({fieldName: 'name', unique: true});
 users.ensureIndex({fieldName: 'ip', unique: true});
-
-
 // Read filesystem photos into nedb objects
 var  defaultImages = fs.readdirSync('./public/img/starter');
-
+// Generate datastructure for images
 defaultImages.forEach(function(image){
 	images.insert({
 		name: image,
@@ -55,7 +40,6 @@ defaultImages.forEach(function(image){
         tosses: []
 	})
 });
-
 // Make users and images universally available
 module.exports = {
 	images:images,
