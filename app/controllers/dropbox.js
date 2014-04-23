@@ -1,7 +1,9 @@
 var fs = require('fs')
 ,	dbox  = require("dbox")
-,	http = require("http")
-,	config = require('../../config/config.js')
+,   http = require('http')
+,   url = require('url')
+,   callbackHost = "http://localhost:3000"
+
 
 /*
 Dropbox uses OAuth for a 3-step flow:
@@ -19,30 +21,36 @@ var dropbox = dbox.app({ "app_key" : APP_KEY, "app_secret" : APP_SECRET });
 
 
 // Step 2 
-function requestToken(responce, request){
+function requestToken(request, response){
 	dropbox.requesttoken(function(status, request_token){
 		// storing the returned request token in a session cookie for use in the next step
-		responce.send(200, {
-			"Set-Cookie" : ["oat=" + request_token.oauth_token,
-							"oats=" + request_token.oauth_token_secret]
-		});
-		//redirection happens by writing a piece of javascript to our http responce
-		responce.write(	"<script>window.location='https://www.dropbox.com/1/oauth/authorize"+
-					"?oauth_token=" + request_token.oauth_token + 
-					"&oauth_callback=" + callbackHost + "/authorized" + ";</script>");
-		responce.end();
+        response.cookie({'oat': request_token.oauth_token},
+                {'oats': request_token.oauth_token_secret});
+
+        response.writeHead(200, {
+            'Set-Cookie': 'mycookie=test',
+            'Content-Type': 'text/plain'
+        });
+        response.write("This is a test.")
+
+		//redirection happens by writing a piece of javascript to our http response
+		// response.write(	"<script>window.location='https://www.dropbox.com/1/oauth/authorize"+
+		// 			"?oauth_token=" + request_token.oauth_token + 
+		// 			"&oauth_callback=" + callbackHost + "/authorized'" + ";</script>");
+		response.end();
 	});
 }
 
-function accessToken(req, res) {
-    var req_token = {oauth_token : req.cookies.oat, oauth_token_secret : req.cookies.oats};
+var accessToken = function(request, response) {
+    console.log("cookies: "+request.cookies);
+    var req_token = {oauth_token : request.cookies.oat, oauth_token_secret : request.cookies.oats};
     dropbox.accesstoken(req_token, function(status, access_token) {
         if (status == 401) {
-            res.write("Sorry, Dropbox reported an error: " + JSON.stringify(access_token));
+            response.write("Sorry, Dropbox reported an error: " + JSON.stringify(access_token));
         }
         else {
             var expiry = new Date(Date.now() + 1000 * 60 * 60 * 24 * 30); // 30 days
-            res.writeHead(302, {
+            response.writeHead(302, {
                 "Set-Cookie" : "uid=" + access_token.uid + "; Expires=" + expiry.toUTCString(),
                 "Location" : "/"
             });
@@ -54,7 +62,7 @@ function accessToken(req, res) {
                 collection.update({"uid": access_token.uid}, {$set: entry}, {upsert:true});
             });
         }
-        res.end();
+        response.end();
     });
 }
 

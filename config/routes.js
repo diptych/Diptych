@@ -22,7 +22,7 @@ module.exports = function(app){
 	app.get('/rank', gallery.rank)
 
     // call back from dropbox authorization
-    app.get('/authorize', dropbox.requestToken)
+    app.get('/oauth', dropbox.requestToken)
     app.get('/authorized', dropbox.accessToken)
 
 };
